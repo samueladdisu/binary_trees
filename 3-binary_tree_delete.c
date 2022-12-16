@@ -1,18 +1,16 @@
 #include "binary_trees.h"
+#include <stdlib.h>
+
 /**
- * binary_tree_delete - delete (free) binary tree
- * @tree: binary tree to be freed
+ * binary_tree_delete - deletes an entire binary tree
+ * @tree: pointer to the root node of the tree to delete
+ * Return: void
  */
 void binary_tree_delete(binary_tree_t *tree)
 {
-	binary_tree_t *NodeLeft, *NodeRight;
-
-	if (!tree)
+	if (tree == NULL)
 		return;
-
-	NodeLeft = tree->left;
-	NodeRight = tree->right;
+	binary_tree_delete(tree->left);
+	binary_tree_delete(tree->right);
 	free(tree);
-	binary_tree_delete(NodeLeft);
-	binary_tree_delete(NodeRight);
 }
